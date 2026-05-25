@@ -9,18 +9,20 @@
 
 #include <GL/freeglut.h>
 
+#define C_CALLBACKCODESIZE 256
+#define C_CALLBACKCODESIZERROR "The Event String size is greater than 255 characters!"
 
 VM *pRingVMObject ;
-char cDisplayFunction[250];
-char cReshapeFunction[250];
-char cIdleFunction[250];
-char cKeyboardFunction[250];
-char cSpecialFunction[250];
-char cSpecialUpFunction[250];
-char cMouseFunction[250];
-char cMotionFunction[250];
-char cMenuStatusFunction[250];
-char cCloseFunction[250];
+char cDisplayFunction[C_CALLBACKCODESIZE];
+char cReshapeFunction[C_CALLBACKCODESIZE];
+char cIdleFunction[C_CALLBACKCODESIZE];
+char cKeyboardFunction[C_CALLBACKCODESIZE];
+char cSpecialFunction[C_CALLBACKCODESIZE];
+char cSpecialUpFunction[C_CALLBACKCODESIZE];
+char cMouseFunction[C_CALLBACKCODESIZE];
+char cMotionFunction[C_CALLBACKCODESIZE];
+char cMenuStatusFunction[C_CALLBACKCODESIZE];
+char cCloseFunction[C_CALLBACKCODESIZE];
 int nGLUTEventWidth ;
 int nGLUTEventHeight ;
 int nGLUTEventKey ;
@@ -911,6 +913,10 @@ RING_FUNC(ring_glutDisplayFunc)
 		return ;
 	}
 	if ( RING_API_ISSTRING(1) ) {
+		if ( strlen( RING_API_GETSTRING(1) ) > 255 ) {
+			RING_API_ERROR(C_CALLBACKCODESIZERROR);
+			return;
+		}
 		strcpy(cDisplayFunction, RING_API_GETSTRING(1) ) ;
 		pRingVMObject = (VM *) pPointer ;
 		glutDisplayFunc(displayFunction);
@@ -933,6 +939,10 @@ RING_FUNC(ring_glutReshapeFunc)
 		return ;
 	}
 	if ( RING_API_ISSTRING(1) ) {
+		if ( strlen( RING_API_GETSTRING(1) ) > 255 ) {
+			RING_API_ERROR(C_CALLBACKCODESIZERROR);
+			return;
+		}
 		strcpy(cReshapeFunction, RING_API_GETSTRING(1) ) ;
 		pRingVMObject = (VM *) pPointer ;
 		glutReshapeFunc(reshapeFunction);
@@ -961,6 +971,10 @@ RING_FUNC(ring_glutIdleFunc)
 		return ;
 	}
 	if ( RING_API_ISSTRING(1) ) {
+		if ( strlen( RING_API_GETSTRING(1) ) > 255 ) {
+			RING_API_ERROR(C_CALLBACKCODESIZERROR);
+			return;
+		}
 		strcpy(cIdleFunction, RING_API_GETSTRING(1) ) ;
 		pRingVMObject = (VM *) pPointer ;
 		glutIdleFunc(IdleFunction);
@@ -982,6 +996,10 @@ RING_FUNC(ring_glutKeyboardFunc)
 		return ;
 	}
 	if ( RING_API_ISSTRING(1) ) {
+		if ( strlen( RING_API_GETSTRING(1) ) > 255 ) {
+			RING_API_ERROR(C_CALLBACKCODESIZERROR);
+			return;
+		}
 		strcpy(cKeyboardFunction, RING_API_GETSTRING(1) ) ;
 		pRingVMObject = (VM *) pPointer ;
 		glutKeyboardFunc(KeyboardFunction);
@@ -1003,6 +1021,10 @@ RING_FUNC(ring_glutSpecialFunc)
 		return ;
 	}
 	if ( RING_API_ISSTRING(1) ) {
+		if ( strlen( RING_API_GETSTRING(1) ) > 255 ) {
+			RING_API_ERROR(C_CALLBACKCODESIZERROR);
+			return;
+		}
 		strcpy(cSpecialFunction, RING_API_GETSTRING(1) ) ;
 		pRingVMObject = (VM *) pPointer ;
 		glutSpecialFunc(SpecialFunction);
@@ -1024,6 +1046,10 @@ RING_FUNC(ring_glutSpecialUpFunc)
 		return ;
 	}
 	if ( RING_API_ISSTRING(1) ) {
+		if ( strlen( RING_API_GETSTRING(1) ) > 255 ) {
+			RING_API_ERROR(C_CALLBACKCODESIZERROR);
+			return;
+		}
 		strcpy(cSpecialUpFunction, RING_API_GETSTRING(1) ) ;
 		pRingVMObject = (VM *) pPointer ;
 		glutSpecialUpFunc(SpecialUpFunction);
@@ -1046,6 +1072,10 @@ RING_FUNC(ring_glutMouseFunc)
 		return ;
 	}
 	if ( RING_API_ISSTRING(1) ) {
+		if ( strlen( RING_API_GETSTRING(1) ) > 255 ) {
+			RING_API_ERROR(C_CALLBACKCODESIZERROR);
+			return;
+		}
 		strcpy(cMouseFunction, RING_API_GETSTRING(1) ) ;
 		pRingVMObject = (VM *) pPointer ;
 		glutMouseFunc(MouseFunction);
@@ -1066,6 +1096,10 @@ RING_FUNC(ring_glutMotionFunc)
 		return ;
 	}
 	if ( RING_API_ISSTRING(1) ) {
+		if ( strlen( RING_API_GETSTRING(1) ) > 255 ) {
+			RING_API_ERROR(C_CALLBACKCODESIZERROR);
+			return;
+		}
 		strcpy(cMotionFunction, RING_API_GETSTRING(1) ) ;
 		pRingVMObject = (VM *) pPointer ;
 		glutMotionFunc(MotionFunction);
@@ -1111,6 +1145,10 @@ RING_FUNC(ring_glutMenuStatusFunc)
 		return ;
 	}
 	if ( RING_API_ISSTRING(1) ) {
+		if ( strlen( RING_API_GETSTRING(1) ) > 255 ) {
+			RING_API_ERROR(C_CALLBACKCODESIZERROR);
+			return;
+		}
 		strcpy(cMenuStatusFunction, RING_API_GETSTRING(1) ) ;
 		pRingVMObject = (VM *) pPointer ;
 		glutMenuStatusFunc(MenuStatusFunction);
@@ -2478,6 +2516,10 @@ RING_FUNC(ring_glutCloseFunc)
 		return ;
 	}
 	if ( RING_API_ISSTRING(1) ) {
+		if ( strlen( RING_API_GETSTRING(1) ) > 255 ) {
+			RING_API_ERROR(C_CALLBACKCODESIZERROR);
+			return;
+		}
 		strcpy(cCloseFunction, RING_API_GETSTRING(1) ) ;
 		pRingVMObject = (VM *) pPointer ;
 		glutCloseFunc(closeFunction);
